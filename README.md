@@ -1,5 +1,4 @@
-# online-store-dm102
-Trabalho DM110 - Order
+# Trabalho DM110 - Order
 
 <img alt="Online Store UML" src="/docs/trabalho-dm110-uml.png">
 

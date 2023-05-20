@@ -8,6 +8,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.NotFoundException;
 
 import br.inatel.dm110.trabalho.api.interfaces.OrderLocal;
 import br.inatel.dm110.trabalho.api.model.OrderTO;
@@ -31,6 +32,10 @@ public class OrderBean implements OrderLocal {
     public OrderTO updateOrder(String code, OrderTO order) {
         OrderEntity orderEntity = entityManager.find(OrderEntity.class, code);
 
+        if (orderEntity == null) {
+            throw new NotFoundException("Order not found for code: " + code);
+        }
+
         orderEntity.setProductCode(order.getProductCode() != null ? order.getProductCode() : orderEntity.getProductCode());
         orderEntity.setCpf(order.getCpf() != null ? order.getCpf() : orderEntity.getCpf());
         orderEntity.setAmount(order.getAmount() != 0 ? order.getAmount() : orderEntity.getAmount());
@@ -52,6 +57,11 @@ public class OrderBean implements OrderLocal {
     @Override
     public void deleteOrder(String code) {
         OrderEntity orderEntity = entityManager.find(OrderEntity.class, code);
+
+        if (orderEntity == null) {
+            throw new NotFoundException("Order not found for code: " + code);
+        }
+
         entityManager.remove(orderEntity);
     }
 
@@ -81,6 +91,11 @@ public class OrderBean implements OrderLocal {
     @Override
     public OrderTO getOrderById(String code) {
         OrderEntity orderEntity = entityManager.find(OrderEntity.class, code);
+
+        if (orderEntity == null) {
+            throw new NotFoundException("Order not found for code: " + code);
+        }
+
         OrderTO order = new OrderTO(orderEntity.getCode(), orderEntity.getProductCode(), orderEntity.getCpf(), orderEntity.getAmount(), orderEntity.getDate(), orderEntity.getValue());
         return order;
     }

@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>Trabalho de DM 110 - EJB</name>
-    <description>EJB project of DM 110</description>
+    <name>Trabalho de DM 110 - MDB</name>
+    <description>MDB project of DM 110</description>
     <properties></properties>
     <parent>
         <groupId>br.inatel.dm110</groupId>
@@ -13,7 +13,7 @@
     </parent>
 
     <groupId>br.inatel.dm110</groupId>
-    <artifactId>trabalho-ejb</artifactId>
+    <artifactId>trabalho-mdb</artifactId>
     <packaging>ejb</packaging>
 
     <build>
@@ -44,12 +44,8 @@
             <artifactId>javaee-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-        </dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+            </dependency>
     </dependencies>
 </project>

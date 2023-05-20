@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LogTO {
-;
   private String orderCode;
   private String operation;
   private Date date;

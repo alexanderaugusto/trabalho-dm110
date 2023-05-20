@@ -2,40 +2,40 @@ package br.inatel.dm110.trabalho.impl;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 
-import br.inatel.dm110.trabalho.api.model.Order;
+import br.inatel.dm110.trabalho.api.interfaces.OrderLocal;
+import br.inatel.dm110.trabalho.api.model.OrderTO;
 import br.inatel.dm110.trabalho.api.service.OrderService;
 
 @RequestScoped
 public class OrderServiceImpl implements OrderService {
+    @EJB
+	private OrderLocal orderBean;
+
     @Override
-    public Order storeOrder(Order order) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'storeOrder'");
+    public OrderTO storeOrder(OrderTO order) {
+        return orderBean.createOrder(order);
     }
 
     @Override
-    public Order updateOrder(String code, Order order) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateOrder'");
+    public OrderTO updateOrder(String code, OrderTO order) {
+        return orderBean.updateOrder(code, order);
     }
 
     @Override
     public void deleteOrder(String code) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteOrder'");
+        orderBean.deleteOrder(code);
     }
 
     @Override
-    public List<Order> getOrders(String code, String cpf) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOrders'");
+    public List<OrderTO> getOrders(String code, String cpf) {
+        return orderBean.getOrders(code, cpf);
     }
 
     @Override
-    public Order getOrderById(String code) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getOrderById'");
+    public OrderTO getOrderById(String code) {
+        return orderBean.getOrderById(code);
     }
 }

@@ -1,5 +1,7 @@
 package br.inatel.dm110.beans.order;
 
+import java.util.logging.Logger;
+
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.EJB;
 import javax.ejb.MessageDriven;
@@ -21,6 +23,8 @@ public class LogTopicMDB implements MessageListener {
     @EJB
     private LogLocal logBean;
 
+    private static Logger log = Logger.getLogger(LogTopicMDB.class.getName());
+
     @Override
     public void onMessage(Message message) {
         try {
@@ -31,6 +35,8 @@ public class LogTopicMDB implements MessageListener {
                 LogTO logTO = new Gson().fromJson(logText, LogTO.class);
 
                 logBean.saveLog(logTO);
+
+                log.info("Log saved: " + logText);
             }
         } catch (JMSException e) {
             e.printStackTrace();
